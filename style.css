@@ -10,6 +10,8 @@ body{
 
 .comida-container {
   background-color: red;
+  height: 10rem;
+  width: 10rem;
   /* Estilos para el contenedor de la lista */
 }
 
