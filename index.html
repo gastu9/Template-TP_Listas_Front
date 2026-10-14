@@ -3,22 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comidas Argentinas</title> 
-    <link rel="stylesheet" href="style.css"> 
+    <title>Comidas Argentinas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
       <!-- Para filtros y navegacion -->
+
+      <input type="search" id="buscador" placeholder="buscar por nombre, provincia o categoria">
+      <select id="filtrocategoria">
+        <option value="parrila">parrilla</option>
+        <option value="frito">frito</option>
+      </select>
+
+      <select id="filtroprovincia">
+        <option value="">Buenos Aires</option>
+        <option value="Salta">Salta</option>
+        <option value="Tucuman">Tucuman</option>
+        <option value="Cordoba">Cordoba</option>
+      </select>
+
+
     </header>
+
 
     <main class="comida-container" id="comidaContainer">
         <!-- Contenido Dinamico -->
-    </main>     
+    </main>    
+
 
     <section class="addFood">
+
+      <form id="agregar-comida-form">
+        <h2>Agregar comida</h2>
+        <label for="nombre">Nombre de comida</label>
+        <input  id="nombre" type="text"  placeholder="nombre de la comida" required>
+        
+        <label for="provincia">Provincia de comida</label>
+        <input  id="provincia" type="text"  placeholder="provincia de la comida" required>
+
+        <label for="categoria">Categoria de comida</label>
+        <input  id="categoria" type="text"  placeholder="categoria de la comida" required>
+
+        <label for="ingredientes">Ingredientes de comida</label>
+        <input  id="ingredientes" type="text"  placeholder="ingredientes de la comida" required>
+
+        <button type="submit">Agregar</button>
+      </form>
       <!-- Para el form para agregar comida -->
     </section>
 
+
+   
     <script type="module" src="./main.js"></script>
 </body>
 </html>
