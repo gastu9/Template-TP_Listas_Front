@@ -1,7 +1,7 @@
 /*
     Cargar comidas en memoria desde el JSON
 */
-fetch('./data/comidas.json')          // Ruta al archivo JSON
+fetch('./data/comidas-extended.json')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Comidas cargadas desde JSON:');
@@ -15,9 +15,13 @@ fetch('./data/comidas.json')          // Ruta al archivo JSON
 
 let comidas = [];
 
-const container = document.getElementById('comidaContainer');
 
 function mostrarComidaConForEach(){
+
+  const container = document.getElementById('comidaContainer');
+
+  container.innerHTML = "" ;
+
   comidas.forEach( comida => {
     container.innerHTML +=
     `
@@ -39,13 +43,13 @@ function mostrarComidaConForEach(){
 
 const agregarcomidaform = document.getElementById('agregar-comida-form');
 agregarcomidaform.addEventListener("submit",(event) => {  
-  alert("Comida agregada: " + event.target.nombre.value)
+  //alert("Comida agregada: " + event.target.nombre.value)
   event.preventDefault()
   let comidanueva = {
     nombre: event.target.nombre.value,
-    provincia: event.target.nombre.value,
-    categoria: event.target.nombre.value,
-    ingredientes: event.target.nombre.value.split(","),
+    provincia: event.target.provincia.value,
+    categoria: event.target.categoria.value,
+    ingredientes: event.target.ingredientes.value.split(","),
 
   }
   comidas.push(comidanueva)
@@ -56,15 +60,25 @@ agregarcomidaform.addEventListener("submit",(event) => {
 
 const filtrocategoria = document.getElementById("filtrocategoria")
 const filtroprovincia = document.getElementById("filtroprovincia")
+const busqueda = document.getElementById("buscador")
 
 
 function filtrar () {
   let comidasFiltradas = comidas.filter ( comida => {
     return comida.categoria.includes(filtrocategoria.value)
         && comida.provincia.includes(filtroprovincia.value)
-      
-
-
-
   })
+  mostrarComidaConForEach(comidasFiltradas)
+
+}
+
+
+function buscar (){
+   let comidasFiltradas = comidas.filter( comida => {
+    return comida.nombre.toLowerCase().includes(busqueda.value.toLowerCase())
+        || comida.provincia.toLowerCase().includes(busqueda.value.toLowerCase())
+        || comida.categoria.toLowerCase().includes(busqueda.value.toLowerCase())
+   })
+   
+   mostrarComidaConForEach (comidasFiltradas)
 }
