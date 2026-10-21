@@ -7,7 +7,7 @@ fetch('./data/comidas-extended.json')          // Ruta al archivo JSON
     console.log('Comidas cargadas desde JSON:');
     console.log(data);    
     comidas = data;
-    mostrarComidaConForEach(); 
+    mostrarComidaConForEach(comidas); 
     actualizarFiltros()                 // Asignar el JSON a la variable comidas
   })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
@@ -23,19 +23,19 @@ const ingredienteConteiner = document.querySelector(".contenedor-ingredientes")
 
 agregarIngredientesBtn.addEventListener("click", () =>{
 
-  ingredienteConteiner.innerHTML += '  <input  id="ingredientes" class="Ingrediente" type="text"  placeholder="ingredientes de la comida" required>'
+  ingredienteConteiner.innerHTML += '  <input  id="ingredientes" class="ingrediente" type="text"  placeholder="ingredientes de la comida" required>'
 
 })
 
 
 
-function mostrarComidaConForEach(){
+function mostrarComidaConForEach(lista){
 
   const container = document.getElementById('comidaContainer');
 
   container.innerHTML = "" ;
 
-  comidas.forEach( comida => {
+  lista.forEach( comida => {
     container.innerHTML +=
     `
     <article class="card">
@@ -43,7 +43,7 @@ function mostrarComidaConForEach(){
       <p class="provincia">${comida.provincia}</p>
       <span>${comida.categoria}</span>
       <ul>
-       ${comida.ingredientes.map(ingredientes=>`<li>${ingredientes}</li>`).join(``)}
+       ${comida.ingredientes.map(ingrediente=>`<li>${ingrediente}</li>`).join(``)}
        </ul>
     </article>  
     `
@@ -76,7 +76,7 @@ agregarcomidaform.addEventListener("submit",(event) => {
   comidas.push(comidanueva)
   mostrarComidaConForEach(comidas)
   console.log(comidanueva)
-  ingredienteConteiner.innerHTML = `<input  id="ingredientes" type="text" class="Ingrediente" placeholder="ingredientes de la comida" required>` 
+  ingredienteConteiner.innerHTML = `<input  id="ingredientes" type="text" class="ingrediente" placeholder="ingredientes de la comida" required>` 
   event.target.reset()
 })
 
@@ -85,13 +85,14 @@ const filtroprovincia = document.getElementById("filtroprovincia")
 const busqueda = document.getElementById("buscador")
 
 
-//buscador
+//filtro
 
 function filtrar () {
   let comidasFiltradas = comidas.filter ( comida => {
     return comida.categoria.includes(filtrocategoria.value)
         && comida.provincia.includes(filtroprovincia.value)
   })
+  //console.log(comidasFiltradas)
   mostrarComidaConForEach(comidasFiltradas)
 
 }

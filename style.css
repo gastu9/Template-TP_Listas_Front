@@ -40,4 +40,20 @@ padding: 0.5rem;
 border-radius: 20px;
 }
 
+.espacioForm{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addFood{
+  background-color: grey;
+  width: 30%;
+  height: auto;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
 
