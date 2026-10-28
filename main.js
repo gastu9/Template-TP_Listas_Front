@@ -80,6 +80,8 @@ agregarcomidaform.addEventListener("submit",(event) => {
   event.target.reset()
 })
 
+//variables filtros
+
 const filtrocategoria = document.getElementById("filtrocategoria")
 const filtroprovincia = document.getElementById("filtroprovincia")
 const busqueda = document.getElementById("buscador")
